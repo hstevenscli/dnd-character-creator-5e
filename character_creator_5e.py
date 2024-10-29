@@ -81,7 +81,7 @@ class_information = {
             "armor": ["Light", "Medium", "Shields"],
             "weapons": ["Simple", "Martial"],
             "tools": [],
-            "saving throws": ["Strength", "Constituion"],
+            "saving throws": ["Strength", "Constitution"],
             "Skills": [],
             },
         "equipment": ["Explore's Pack", "4 Javelins"],
@@ -145,7 +145,7 @@ class_information = {
             "armor": ["All", "Shields"],
             "weapons": ["Simple", "Martial"],
             "tools": [],
-            "saving throws": ["Strength", "Constituion"],
+            "saving throws": ["Strength", "Constitution"],
             "Skills": [],
             },
         "equipment": [],
@@ -170,9 +170,9 @@ class_information = {
         "skills_to_choose_from": ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"],
         "number_of_skills_to_choose": 2,
     },
-    "": {
-        "hitpoints": _,
-        "hitdice": _,
+    "a": {
+        "hitpoints": 0,
+        "hitdice": 0,
         "proficiencies": {
             "armor": [],
             "weapons": [],
@@ -182,13 +182,13 @@ class_information = {
             },
         "equipment": [],
         "special_abilities": [],
-        "page_number": _,
+        "page_number": 0,
         "skills_to_choose_from": [],
-        "number_of_skills_to_choose": _,
+        "number_of_skills_to_choose": 0,
     },
-    "": {
-        "hitpoints": _,
-        "hitdice": _,
+    "a": {
+        "hitpoints": 0,
+        "hitdice": 0,
         "proficiencies": {
             "armor": [],
             "weapons": [],
@@ -198,13 +198,13 @@ class_information = {
             },
         "equipment": [],
         "special_abilities": [],
-        "page_number": _,
+        "page_number": 0,
         "skills_to_choose_from": [],
-        "number_of_skills_to_choose": _,
+        "number_of_skills_to_choose": 0,
     },
-    "": {
-        "hitpoints": _,
-        "hitdice": _,
+    "a": {
+        "hitpoints": 0,
+        "hitdice": 0,
         "proficiencies": {
             "armor": [],
             "weapons": [],
@@ -214,13 +214,13 @@ class_information = {
             },
         "equipment": [],
         "special_abilities": [],
-        "page_number": _,
+        "page_number": 0,
         "skills_to_choose_from": [],
-        "number_of_skills_to_choose": _,
+        "number_of_skills_to_choose": 0,
     },
-    "": {
-        "hitpoints": _,
-        "hitdice": _,
+    "a": {
+        "hitpoints": 0,
+        "hitdice": 0,
         "proficiencies": {
             "armor": [],
             "weapons": [],
@@ -230,13 +230,13 @@ class_information = {
             },
         "equipment": [],
         "special_abilities": [],
-        "page_number": _,
+        "page_number": 0,
         "skills_to_choose_from": [],
-        "number_of_skills_to_choose": _,
+        "number_of_skills_to_choose": 0,
     },
-    "": {
-        "hitpoints": _,
-        "hitdice": _,
+    "a": {
+        "hitpoints": 0,
+        "hitdice": 0,
         "proficiencies": {
             "armor": [],
             "weapons": [],
@@ -246,13 +246,13 @@ class_information = {
             },
         "equipment": [],
         "special_abilities": [],
-        "page_number": _,
+        "page_number": 0,
         "skills_to_choose_from": [],
-        "number_of_skills_to_choose": _,
+        "number_of_skills_to_choose": 0,
     },
-    "": {
-        "hitpoints": _,
-        "hitdice": _,
+    "a": {
+        "hitpoints": 0,
+        "hitdice": 0,
         "proficiencies": {
             "armor": [],
             "weapons": [],
@@ -262,9 +262,9 @@ class_information = {
             },
         "equipment": [],
         "special_abilities": [],
-        "page_number": _,
+        "page_number": 0,
         "skills_to_choose_from": [],
-        "number_of_skills_to_choose": _,
+        "number_of_skills_to_choose": 0,
     },
 }
 
@@ -282,7 +282,7 @@ class ClassType:
 
     def getClassName(self):
         return self.mClassName
-    
+
     def getHitpoints(self):
         return self.mHitpoints
 
@@ -325,6 +325,7 @@ class Character:
         self.choose_skills()
         self.choose_equipment()
 
+    # Method for setting up the skills for the chosen class
     def choose_skills(self):
         while len(self.mProficiencies["Skills"]) < self.mSkillChooseLimit:
             valid_skills = self.mSkillBank
@@ -342,6 +343,8 @@ class Character:
             else:
                 print("Please pick a valid skill to add to proficiencies")
 
+    # TODO ONLY WORKS FOR BARBARIAN RIGHT NOW, CHANGE IT TO WORK WITH WHATEVER CLASS
+    # Method for setting up the equipment for the class, 
     def choose_equipment(self):
         first_choice = None
         second_choice = None
@@ -365,6 +368,11 @@ class Character:
         self.mEquipment.append(second_choice)
 
 
+    # Print out a txt version of a character sheet for easy viewing of all character information
+    def print_character_sheet(self):
+        pass
+
+
 
 
 
@@ -373,5 +381,6 @@ class Character:
 
 
 s = Stats(15, 15, 15, 15, 15, 15)
-c = Character("barbarian", 1, s, "human")
+ct_object = ClassType(class_information, "barbarian")
+c = Character(ct_object, 1, s, "human")
 print("Hitpoints:", c.mHitpoints, "\nEquipment:", c.mEquipment, "\nProficiencies:", c.mProficiencies)
